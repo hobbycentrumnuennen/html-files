@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form action="/submit_registration" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="interests">Select your interests:</label><br>
+        <input type="checkbox" id="interest1" name="interests" value="coding">
+        <label for="interest1"> Coding</label><br>
+        <input type="checkbox" id="interest2" name="interests" value="design">
+        <label for="interest2"> Design</label><br>
+        <input type="checkbox" id="interest3" name="interests" value="marketing">
+        <label for="interest3"> Marketing</label><br><br>
+
+        <input type="submit" value="Submit">
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            alert('Form submitted!');
+        var formData = new FormData(event.target);
+        var data = {};
+        formData.forEach((value, key) => {
+            if (!data[key]) {
+                data[key] = value;
+            } else {
+                if (!Array.isArray(data[key])) {
+                    data[key] = [data[key]];
+                }
+                data[key].push(value);
+            }
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://your-email-sending-service.com/send', true);
+        xhr.setRequestHeader('Authorization', 'Bearer YOUR_ACCESS_TOKEN');
+        xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhr.send(JSON.stringify({
+            to: 'robin.bakkerus@gmail.com',
+            subject: 'New Registration Form Submission',
+            body: JSON.stringify(data, null, 2)
+        }));
+        });
+    </script>
+    </form>
+</body>
+</html>
