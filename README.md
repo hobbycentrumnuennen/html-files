@@ -4,7 +4,8 @@ Gebruik Github desktop om files te committen
 en FileZilla om files te updaten in website
 
 Printen:
-https://www.freeconvert.com/html-to-pdf/download
+download dagweek-per-dag naar:
+https://www.freeconvert.com/html-to-pdf
 Open de Pdf in Arc browser en zoom out 44%
 Dan snip tool en copy/paste naar Irfan View
 
